@@ -7,28 +7,28 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class NavbarComponent {
 
-  @Output() onIconMenuOpen1 : EventEmitter<null> = new EventEmitter();
-  @Output() onIconMenuClosed1 : EventEmitter<null> = new EventEmitter();
+  @Output() aoAbrirMenuDeIcones : EventEmitter<null> = new EventEmitter();
+  @Output() aoFecharMenuDeIcones : EventEmitter<null> = new EventEmitter();
 
-  @Output() onFullMenuOpen1 : EventEmitter<null> = new EventEmitter();
-  @Output() onFullMenuClosed1 : EventEmitter<null> = new EventEmitter();
+  @Output() aoAbrirMenuPrincipal : EventEmitter<null> = new EventEmitter();
+  @Output() aoFecharMenuPrincipal : EventEmitter<null> = new EventEmitter();
 
   constructor() { }
 
-  emit_on_icon_menu_open() {
-    this.onIconMenuOpen1.emit();
+  emite_menu_de_icones_aberto() {
+    this.aoAbrirMenuDeIcones.emit();
   }
 
-  emit_on_icon_menu_closed() {
-    this.onIconMenuClosed1.emit();
+  emite__menu_de_icones_fechado() {
+    this.aoFecharMenuDeIcones.emit();
   }
 
-  emit_on_full_menu_open() {
-    this.onFullMenuOpen1.emit();
+  emite_menu_principal_aberto() {
+    this.aoAbrirMenuPrincipal.emit();
   }
 
-  emit_on_full_menu_closed() {
-    this.onFullMenuClosed1.emit();
+  emite_menu_principal_fechado() {
+    this.aoFecharMenuPrincipal.emit();
   }
 
 }

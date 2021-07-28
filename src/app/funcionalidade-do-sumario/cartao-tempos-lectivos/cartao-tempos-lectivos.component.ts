@@ -1,25 +1,26 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { identificador } from '../tipos-de-dados/tipos';
 
 @Component({
   selector: 'app-cartao-tempos-lectivos',
   templateUrl: './cartao-tempos-lectivos.component.html',
   styleUrls: ['./cartao-tempos-lectivos.component.css']
 })
-export class CartaoTemposLectivos {
+export class CartaoTemposLectivosComponent {
 
   @Input()
-  bandeira_aviso : any;
+  bandeira_aviso! : identificador;
 
   @Input()
-  temposDeAula : any;
+  tempos_de_aula : any;
   
   @Output()
-  onTempoLectivoActivo : EventEmitter<null> = new EventEmitter();
+  ao_activar_tempo_lectivo : EventEmitter<number> = new EventEmitter();
 
-  classeDoCardDoTempo : string = "formbg";
+  classe_padrao_dos_cartoes : string = "formbg";
 
-  activarTempoLectivo() {
-    this.onTempoLectivoActivo.emit(this.temposDeAula.id);
+  activar_tempo_lectivo() {
+    this.ao_activar_tempo_lectivo.emit(this.tempos_de_aula.id);
   }
 
   descricao_tempos_lectivos(tempos : number) {
@@ -28,11 +29,11 @@ export class CartaoTemposLectivos {
     } else return `${tempos} tempo`;
   }
 
-  setarClassParaTempoSelecionado() {
-    if (this.bandeira_aviso.id == this.temposDeAula.id) {
-      return this.classeDoCardDoTempo == "formbg selected" ? "formbg" : "formbg selected";
+  setar_classe_para_tempo_selecionado() {
+    if (this.bandeira_aviso.id == this.tempos_de_aula.id) {
+      return this.classe_padrao_dos_cartoes == "formbg selected" ? "formbg" : "formbg selected";
     }
-    return this.classeDoCardDoTempo;
+    return this.classe_padrao_dos_cartoes;
   }
 
 }

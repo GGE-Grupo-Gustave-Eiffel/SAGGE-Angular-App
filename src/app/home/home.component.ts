@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
 import { faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -10,17 +10,16 @@ import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent  {
 
-  faBook = faBookOpen;
-  faTeacher = faChalkboardTeacher;
+  faBook = faBookOpen;faTeacher = faChalkboardTeacher;
   faArrowRight = faArrowRight;
-  faChart = faChartPie;
-  faGraduation = faGraduationCap;
+    faChart = faChartPie;
+              faGraduation = faGraduationCap;
 
-  constructor() { }
+  constructor(
+    
+  ) { }
 
-  ngOnInit(): void {
-  }
 
 }

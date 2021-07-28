@@ -2,22 +2,21 @@ import { Directive, ElementRef, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
 @Directive({
-  selector: '[subNav]'
+  selector: '[appSubNav]'
 })
 export class NavbarDirective implements OnInit {
 
-  @Output() onIconMenuOpen : EventEmitter<null> = new EventEmitter();
-  @Output() onIconMenuClosed : EventEmitter<null> = new EventEmitter();
+  @Output() aoAbrirMeunuDeIcones : EventEmitter<null> = new EventEmitter();
+  @Output() aoFecharMenuDeIcones : EventEmitter<null> = new EventEmitter();
 
-  @Output() onFullMenuOpen : EventEmitter<null> = new EventEmitter();
-  @Output() onFullMenuClosed : EventEmitter<null> = new EventEmitter();
+  @Output() aoAbrirMenuPrincipal : EventEmitter<null> = new EventEmitter();
+  @Output() aoFecharMenuPrincipal : EventEmitter<null> = new EventEmitter();
 
   private trigger : any;
   private menu : any;
   private isMenuOpen : boolean = false;
   private eventtype : any;
-  private windowObj = window
-
+  
   constructor(private el : ElementRef) { }
 
   private mobilecheck() {
@@ -42,12 +41,12 @@ export class NavbarDirective implements OnInit {
 
   private openIconMenu() {
     this.menu.classList.add('gn-open-part');
-    this.onIconMenuOpen.emit();
+    this.aoAbrirMeunuDeIcones.emit();
   }
 
   private closeIconMenu() {
     this.menu.classList.remove('gn-open-part');
-    this.onIconMenuClosed.emit();
+    this.aoFecharMenuDeIcones.emit();
   }
 
   private openMenu () {
@@ -56,7 +55,7 @@ export class NavbarDirective implements OnInit {
     this.isMenuOpen = true;
     this.menu.classList.add('gn-open-all');
     this.closeIconMenu();
-    this.onFullMenuOpen.emit();
+    this.aoAbrirMenuPrincipal.emit();
   }
 
   /*
@@ -78,7 +77,7 @@ export class NavbarDirective implements OnInit {
       this.trigger.classList.remove('gn-selected' );
       this.isMenuOpen = false;
       this.menu.classList.remove('gn-open-all' );
-      this.onFullMenuClosed.emit();
+      this.aoFecharMenuPrincipal.emit();
       //removeEventListener( this.eventtype, this.bodyClickFn );
     })
 

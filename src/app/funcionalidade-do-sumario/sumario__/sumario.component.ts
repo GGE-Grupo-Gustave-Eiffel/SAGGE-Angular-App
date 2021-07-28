@@ -1,19 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import { identificador, tempoLectivo } from '../tipos-de-dados/tipos';
 
 @Component({
   selector: 'app-sumario',
   templateUrl: './sumario.component.html',
   styleUrls: ['./sumario.component.css']
 })
-export class SumarioComponent implements OnInit {
+export class SumarioComponent {
 
   constructor() { }
 
-  ngOnInit(): void {
-    
-  }
-
-  temposDeAula : any = [
+  temposDeAula : Array<tempoLectivo> = [
     {
       turma : '7ªClasse',
       disciplina : 'Biologia',
@@ -34,11 +31,11 @@ export class SumarioComponent implements OnInit {
     }
   ];
 
-  bandeira_aviso : any = {id : 0};
+  bandeira_aviso : identificador = {id : 0};
   desactivador_dos_campos_do_formulario : boolean = true;
   campo_bloqueado : string = 'input-blocked';
 
-  tempoLectivoActivo(tempoId : any) {
+  selectionar_tempo_lectivo(tempoId : number) {
     if (!this.bandeira_aviso.id) {
       this.bandeira_aviso = {id : tempoId}
       this.desactivador_dos_campos_do_formulario = false;

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SumarioComponent } from './sumario__/sumario.component';
 import { Routes, RouterModule } from '@angular/router';
-import { CartaoTemposLectivos } from './cartao-tempos-lectivos/cartao-tempos-lectivos.component';
+import { CartaoTemposLectivosComponent } from './cartao-tempos-lectivos/cartao-tempos-lectivos.component';
 
 const routes : Routes = [
   {path : '', component : SumarioComponent}
@@ -11,7 +11,7 @@ const routes : Routes = [
 @NgModule({
   declarations: [
     SumarioComponent,
-    CartaoTemposLectivos
+    CartaoTemposLectivosComponent
   ],
   imports: [
     CommonModule,
