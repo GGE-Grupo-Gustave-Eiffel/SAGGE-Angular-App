@@ -8,18 +8,14 @@ import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent  {
-
-  faBook = faBookOpen;faTeacher = faChalkboardTeacher;
+export class HomeComponent {
+  faBook = faBookOpen;
+  faTeacher = faChalkboardTeacher;
   faArrowRight = faArrowRight;
-    faChart = faChartPie;
-              faGraduation = faGraduationCap;
+  faChart = faChartPie;
+  faGraduation = faGraduationCap;
 
-  constructor(
-    
-  ) { }
-
-
+  constructor() {}
 }
