@@ -1,0 +1,10 @@
+.full {
+    width : 100%;
+}
+
+.responsive {
+   display: flex;
+   flex-direction: row-reverse;
+}
+
+

@@ -1,0 +1,8 @@
+<div [ngClass]="setarClassParaTempoSelecionado()" (click)="activarTempoLectivo()">
+  <div class="formbg-inner padding-horizontal--48">
+    <span class="padding-bottom--15">{{temposDeAula.turma}} <hr>
+      {{temposDeAula.disciplina}} | {{descricao_tempos_lectivos(temposDeAula.temposLectivos)}} 
+    </span>  
+    <span class="temposLancados">Por Lançar</span> 
+  </div>
+</div>

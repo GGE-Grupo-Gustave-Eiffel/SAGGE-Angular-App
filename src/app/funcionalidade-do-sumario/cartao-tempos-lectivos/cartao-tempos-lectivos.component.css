@@ -1,0 +1,13 @@
+.formbg-inner {
+ cursor : pointer;
+}
+
+.selected {
+  border : solid 2px #54d4cc99;
+}
+
+.temposLancados {
+  font-size: 15px;
+  color : green;
+}
+

@@ -1,0 +1,25 @@
+.formbg-larg {
+    margin: 0px auto;
+    width: 100%;
+    padding : 50px;
+    margin-top: 20px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
+}
+
+
+/*quando os campos do formulário estiverem bloquados, aplique esta formatação*/
+.input-blocked {
+    border: solid 1px rgba(238, 71, 71, 0.795);
+}
+
+.input-blocked {
+    background: url("https://assets.digitalocean.com/labs/icons/lock.svg") no-repeat 95% 50%;
+    background-size: 25px;
+}
+
+input:disabled,
+input[disabled]{
+  cursor: not-allowed;
+}

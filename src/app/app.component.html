@@ -1,0 +1,12 @@
+<app-navbar (onIconMenuOpen1)="iconMenuOpened()" (onIconMenuClosed1)="iconMenuClosed()"
+    (onFullMenuOpen1)="fullMenuOpen()" (onFullMenuClosed1)="fullMenuClosed()"
+></app-navbar>
+<!--<div [ngClass]="actualContainerClass">-->
+<div [ngClass]="actualContainerClass" style="margin-top:80px">
+    <div class="container">
+         <!--<div [ngClass]="actualColumnClass">-->
+            <router-outlet></router-outlet>
+        <!--</div>-->
+    </div>
+</div>
+
