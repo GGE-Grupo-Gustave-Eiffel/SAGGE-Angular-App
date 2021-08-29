@@ -6,5 +6,8 @@
 
 # o ficheiro *.module.ts deve estar na raíz da pasta e nunca em uma subpasta
 
+# setar o --base-href para uma subpasta no domínio cepph para testar o App no meu Iphone:
+# https://bartwullems.blogspot.com/2021/04/angular-deploy-url-and-base-href.html
+
 # este repositório usa a configuração de coding styling enforcement como neste artigo do ITNext: 
 https://itnext.io/angular-globally-enforce-a-coding-style-using-tslint-prettier-husky-a6cf0dcc3edf

@@ -1,0 +1,15 @@
+<div class="pagination:container d-flex justify-content-center" style="margin-top: 50px;">
+
+  <div [ngClass]="classe_primeiro_ele()" #primeira_pagina class="pagination:number"
+    (click)="mudar_semana_clique(1, primeira_pagina)" placement="bottom" [ngbTooltip]="tool_tip + ' ' + para_num_romanos(1)">
+    1
+  </div>
+
+  <div *ngFor="let pagina of paginas_vector, let indice_do_ele=index;">
+    <div class="pagination:number" #paginaEl (click)="mudar_semana_clique(pagina, paginaEl)" *ngIf="pagina !== 1" placement="bottom" [ngbTooltip]="tool_tip + ' ' + para_num_romanos(indice_do_ele+1)">
+      {{pagina}}
+    </div>
+  </div>
+
+</div>
+

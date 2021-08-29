@@ -1,9 +1,10 @@
+
 .formbg-inner {
  cursor : pointer;
 }
 
 .selected {
-  border : solid 2px #54d4cc99;
+  border : solid 1px #5469d4;
 }
 
 .temposLancados {
@@ -11,3 +12,7 @@
   color : green;
 }
 
+#cartao_tempo_lectivo {
+  height : 260px;
+  margin-bottom: 15px;
+}

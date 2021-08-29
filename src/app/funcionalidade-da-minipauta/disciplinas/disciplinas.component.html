@@ -1,0 +1,25 @@
+<span class="padding-bottom--15 span-space">Minipauta por disciplina</span>
+      <hr />
+
+<div class="row">
+
+    <div class="col-md-4" *ngFor="let disciplina of dados_minipata">
+        <div class="card user-card">
+            <div class="card-header">
+                <h5><a routerLink="i">ver minipauta</a></h5>
+            </div>
+            <div class="card-block">
+
+                <h6 class="f-w-600 m-t-25 m-b-10">{{disciplina.nome_disciplina}}</h6>
+                <hr>
+                <span class="span-space">Trimestres</span>
+                <ul class="list-unstyled activity-leval">
+                    
+                    <li placement="bottom" ngbTooltip="IºTrimestre"></li>
+                    <li placement="bottom" ngbTooltip="IIºTrimestre"></li>
+                    <li placement="bottom" ngbTooltip="IIIºTrimestre"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

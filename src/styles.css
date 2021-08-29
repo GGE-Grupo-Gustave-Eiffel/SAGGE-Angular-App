@@ -63,19 +63,19 @@ a {
     transform: rotate(-12deg) skew(-12deg);
 }
 .box-divider--light-all-2 {
-    box-shadow: inset 0 0 0 2px #e3e8ee;
+    box-shadow: inset 0 0 0 2px #476e9e0e;
 }
 .box-background--blue {
-    background-color: #5469d4;
+    background-color: #f1dc2280;
 }
 .box-background--white {
   background-color: #ffffff; 
 }
 .box-background--blue800 {
-    background-color: #212d63;
+    background-color: #e7db69;
 }
 .box-background--gray100 {
-    background-color: #e3e8ee;
+    background-color: #aca7ee62;
 }
 .box-background--cyan200 {
     background-color: #7fd3ed;
@@ -236,3 +236,5 @@ a.ssolink {
     transform: translateX(0px);
   }
 } 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

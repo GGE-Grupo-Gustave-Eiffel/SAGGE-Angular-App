@@ -1,34 +1,39 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { MensageiroService } from '../../utilitarios/servicos/mensageiro.service';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+import { TokenService } from 'src/app/utilitarios/servicos/token.service';
+import { EstadoDeAutenticacaoService } from 'src/app/utilitarios/servicos/estado-de-autenticacao.service';
+
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
-  @Output() aoAbrirMenuDeIcones : EventEmitter<null> = new EventEmitter();
-  @Output() aoFecharMenuDeIcones : EventEmitter<null> = new EventEmitter();
+  estado_de_sessao! : boolean;
 
-  @Output() aoAbrirMenuPrincipal : EventEmitter<null> = new EventEmitter();
-  @Output() aoFecharMenuPrincipal : EventEmitter<null> = new EventEmitter();
+  faCoffee = faCoffee;
 
-  constructor() { }
+  constructor(
+    private autent : EstadoDeAutenticacaoService,
+    public router : Router,
+    public token : TokenService
+  ) { }
 
-  emite_menu_de_icones_aberto() {
-    this.aoAbrirMenuDeIcones.emit();
+  ngOnInit() {
+    this.autent.userAuthState.subscribe(val => {
+      this.estado_de_sessao = val;
+    });
   }
 
-  emite__menu_de_icones_fechado() {
-    this.aoFecharMenuDeIcones.emit();
-  }
-
-  emite_menu_principal_aberto() {
-    this.aoAbrirMenuPrincipal.emit();
-  }
-
-  emite_menu_principal_fechado() {
-    this.aoFecharMenuPrincipal.emit();
+  // saír da conta
+  sair_da_conta() {
+    this.autent.setAuthState(false);
+    this.token.removeToken();
+    this.router.navigate(['login']);
   }
 
 }

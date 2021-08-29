@@ -1,14 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+import { NavbarDirective } from '../directivos/navbar.directive';
 
 import { NavbarComponent } from './navbar.component';
 
 describe('NavbarComponent', () => {
-  it('navbar component set', ()=>{
-    expect(true).toBe(true);
-  });
-  /*
+ 
+  
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
+  let navbar_directivo : NavbarDirective;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -21,10 +23,11 @@ describe('NavbarComponent', () => {
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+   
   });
 
-  it('should create', () => {
+  it('deve criar o componente navbar', () => {
     expect(component).toBeTruthy();
   });
-  */
+  
 });

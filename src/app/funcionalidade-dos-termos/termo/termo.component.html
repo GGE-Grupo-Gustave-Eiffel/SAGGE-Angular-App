@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-12" *ngFor="let i of [1,2,3,4,7]">
+
+        <!-- modal do e-mail -->
+        <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h1>hello, world</h1>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+            </div>
+        </ng-template>
+          
+
+        <div class="card user-card">
+            <div class="card-header">
+                <h5><a routerLink="i">ver ficha</a></h5>
+            </div>
+            <div class="card-block">
+                <h6 class="f-w-600 m-t-25 m-b-10">Alessa Robert</h6>
+            </div>
+            
+            <div class="row d-flex justify-content-center" >
+                <div class="col-md-4">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb d-flex justify-content-center">
+                            <li class="breadcrumb-item">
+                                <a (click)="estrelar_termo()">Estrelar</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a (click)="open(content)">Enviar por E-mail</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a (click)="baixar_pdf()">Baixar PDF</a>
+                            </li>
+                        </ol>
+                    </nav> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

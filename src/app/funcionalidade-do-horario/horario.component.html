@@ -1,0 +1,75 @@
+
+
+    
+    <!--
+    <div class="example-box" *ngFor="let movie of movies" cdkDrag>
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      {{movie}}
+    </div>
+-->
+
+
+<div id="table">
+    <div class="row">
+        <div class="cell header-cell">TEMPOS LECTIVOS</div>
+        <div class="cell header-cell">SEGUNDA-FEIRA</div>
+        <div class="cell header-cell">TERÇA-FEIRA</div>
+        <div class="cell header-cell">QUARTA-FEIRA</div>
+        <div class="cell header-cell">QUINTA-FEIRA</div>
+        <div class="cell header-cell">SEXTA-FEIRA</div>
+    </div>
+    <div class="row" cdkDropListGroup >
+        
+        <!-- tempos -->
+        <div  class="cell" >
+            <div class="example-box" *ngFor="let y of [1,2,3,4,5,6]" >
+                {{y}}º
+            </div>
+        </div>
+
+        <!-- segunda -->
+        <div cdkDropList  [cdkDropListData]="segunda" class="cell" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let y of segunda" cdkDrag>
+                {{y}}
+            </div>
+        </div>
+
+         <!-- terça -->
+         <div cdkDropList [cdkDropListData]="terca" class="cell" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let y of terca" cdkDrag>
+                {{y}}
+            </div>
+        </div>
+
+
+         <!-- quarta -->
+         <div cdkDropList [cdkDropListData]="quarta" class="cell" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let y of quarta" cdkDrag>
+                {{y}}
+            </div>
+        </div>
+
+         <!--- quinta -->
+         <div cdkDropList [cdkDropListData]="quinta" class="cell" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let y of quinta" cdkDrag>
+                {{y}}
+            </div>
+        </div>
+
+         <!-- sexta -->
+         <div cdkDropList [cdkDropListData]="sexta" class="cell" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let y of sexta" cdkDrag>
+                {{y}}
+            </div>
+        </div>
+    
+
+    </div>
+    
+</div>
+<br>
+
+<div class="field padding-bottom--24">
+    <input  type="submit" name="submit"
+        value="Actualizar horário" />
+</div>

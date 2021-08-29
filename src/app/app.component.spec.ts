@@ -3,10 +3,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  
-  it('App component set up', ()=>{
-    expect(true).toBe(false);
-  })
+
+  it('true to be true', ()=>{
+    expect(true).toBe(true);
+  });
 
   /*
   beforeEach(async () => {

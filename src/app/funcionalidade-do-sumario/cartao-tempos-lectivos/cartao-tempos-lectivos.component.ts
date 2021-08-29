@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { identificador } from '../tipos-de-dados/tipos';
+import { identificador, tempoLectivo } from '../../utilitarios/tipos';
 
 @Component({
   selector: 'app-cartao-tempos-lectivos',
@@ -12,15 +12,15 @@ export class CartaoTemposLectivosComponent {
   bandeira_aviso! : identificador;
 
   @Input()
-  tempos_de_aula : any;
+  tempos_de_aula! : tempoLectivo;
   
   @Output()
-  ao_activar_tempo_lectivo : EventEmitter<number> = new EventEmitter();
+  ao_activar_tempo_lectivo : EventEmitter<any> = new EventEmitter();
 
   classe_padrao_dos_cartoes : string = "formbg";
 
   activar_tempo_lectivo() {
-    this.ao_activar_tempo_lectivo.emit(this.tempos_de_aula.id);
+    this.ao_activar_tempo_lectivo.emit({id : this.tempos_de_aula.id, tempos : this.tempos_de_aula.tempos_lectivos});
   }
 
   descricao_tempos_lectivos(tempos : number) {

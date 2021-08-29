@@ -1,0 +1,8 @@
+img {
+    border : solid 1px lightgray;
+}
+
+li a {
+    cursor: pointer;
+    color : #4099ff;
+}

@@ -1,18 +1,12 @@
 <!-- default navbar -->
 <div class="container">
-  <ul id="gn-menu" class="gn-menu-main" appSubNav (aoAbrirMenuDeIcones)="emite_menu_de_icones_aberto()"
-    (aoFecharMenuDeIcones)="emite__menu_de_icones_fechado" (aoAbrirMenuPrincipal)="emite_menu_principal_aberto()"
-    (aoFecharMenuPrincipal)="emite_menu_principal_fechado()">
+  <ul id="gn-menu" class="gn-menu-main">
     <li class="gn-trigger">
-      <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+      <a class="gn-icon gn-icon-menu"  appTrigger><span>Menu</span></a>
 
-      <nav class="gn-menu-wrapper">
+      <nav class="gn-menu-wrapper" appMenu>
         <div class="gn-scroller">
           <ul class="gn-menu">
-            <li class="gn-search-item">
-              <input placeholder="Procurar" type="search" class="gn-search">
-              <a class="gn-icon gn-icon-search"><span></span></a>
-            </li>
             <li>
               <a class="gn-icon gn-icon-download">Avaliações</a>
             </li>
@@ -20,26 +14,27 @@
               <a class="gn-icon gn-icon-illustrator">Relatórios</a>
             </li>
             <li>
-              <a routerLink="sumario" class="gn-icon gn-icon-photoshop">Sumários</a>
+              <a routerLink="/sumario" class="gn-icon gn-icon-photoshop">Sumários</a>
             </li>
-            <li><a class="gn-icon gn-icon-cog">Encarregados</a></li>
-            <li><a class="gn-icon gn-icon-help">Alunos</a></li>
+            <li>
+              <a class="gn-icon gn-icon-cog">Encarregados</a>
+            </li>
+            <li><a routerLink="alunos" class="gn-icon gn-icon-help">Alunos</a></li>
             <li>
               <a class="gn-icon gn-icon-archive">calendário</a>
             </li>
-            <li><a class="gn-icon gn-icon-article">Horários</a></li>
-            <li><a class="gn-icon gn-icon-pictures"></a></li>
-            <li><a class="gn-icon gn-icon-videos"></a></li>
-
+            <li><a routerLink="/turmas" class="gn-icon gn-icon-article">Turmas</a></li>
+            <li *ngIf="estado_de_sessao" ><a routerLink="/perfil" class="gn-icon gn-icon-article">Perfil</a></li>
           </ul>
         </div><!-- /gn-scroller -->
       </nav>
 
     </li>
-    <li><a href="#">SAGE</a></li>
-    <li class="upper-li"><a class="codrops-icon codrops-icon-prev" href="#"><span class="link-menu">Previous
-          Demo</span></a></li>
-    <li class="upper-li"><a class="codrops-icon codrops-icon-drop" routerLink="login"><span class="link-menu">Iniciar
-          Sessão</span></a></li>
+    <li><a href="#">SAGGE</a></li>
+   
+    <li class="upper-li">
+      <a *ngIf="!estado_de_sessao" class="codrops-icon codrops-icon-drop" (click)="sair_da_conta()"  routerLink="/login"><span class="link-menu">Iniciar Sessão</span></a>
+      <a *ngIf="estado_de_sessao" class="codrops-icon codrops-icon-drop" (click)="sair_da_conta()"><span class="link-menu">Encerrar</span></a>  
+    </li>
   </ul>
 </div><!-- /container -->

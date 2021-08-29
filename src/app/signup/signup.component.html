@@ -1,0 +1,37 @@
+<div class="formbg">
+    <div class="formbg-inner padding-horizontal--48">
+        <span class="padding-bottom--15">Registar usuário</span>
+
+        <form id="stripe-login" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+            <div class="field padding-bottom--24">
+                <label for="email">Nome</label>
+                <input type="text" name="name" formControlName="name" required>
+            </div>
+
+            <div class="field padding-bottom--24">
+                <label for="email">Email</label>
+                <input type="email" name="email" formControlName="email" required>
+            </div>
+
+            <div class="field padding-bottom--24">
+                <div class="grid--50-50">
+                    <label for="password">Senha</label>
+                </div>
+                <input type="password" name="password" formControlName="password" required>
+            </div>
+
+            <div class="field padding-bottom--24">
+                <div class="grid--50-50">
+                    <label for="password">Re-digitar a Senha</label>
+                </div>
+                <input type="password" name="password" formControlName="password_confirmation" required>
+            </div>
+
+            <div class="field padding-bottom--24">
+                <input type="submit" name="submit" value="Criar usuário">
+            </div>
+
+        </form>
+
+    </div>
+</div>

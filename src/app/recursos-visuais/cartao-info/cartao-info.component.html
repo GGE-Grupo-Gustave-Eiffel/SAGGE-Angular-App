@@ -1,0 +1,12 @@
+<div style="margin-top: 7px;">
+	<details>
+		<summary>
+			{{info_da_aula.sumario}} / {{info_da_aula.detalhes_aula.licao}} / semana - {{info_da_aula.detalhes_aula.semana}}
+		</summary>
+		<div>
+			{{info_da_aula.detalhes_aula.resumo}}
+			<br><br><br>
+			<app-breadcrumb *ngIf="links.length > 0" [links]="links"></app-breadcrumb>
+		</div>
+	</details>
+</div>

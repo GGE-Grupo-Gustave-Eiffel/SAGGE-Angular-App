@@ -1,8 +1,7 @@
-<div [ngClass]="setar_classe_para_tempo_selecionado()" (click)="activar_tempo_lectivo()">
+<div [ngClass]="setar_classe_para_tempo_selecionado()" (click)="activar_tempo_lectivo()" id="cartao_tempo_lectivo">
   <div class="formbg-inner padding-horizontal--48">
-    <span class="padding-bottom--15">{{tempos_de_aula.turma}} <hr>
-      {{tempos_de_aula.disciplina}} | {{descricao_tempos_lectivos(tempos_de_aula.temposLectivos)}} 
-    </span>  
+    <span id="turma" class="padding-bottom--15">{{tempos_de_aula.nome}}</span> <hr>
+    <span id="disciplina-e-tempolectivo">{{tempos_de_aula.disciplina}} | {{descricao_tempos_lectivos(tempos_de_aula.tempos_lectivos)}}</span>  
     <span class="temposLancados">Por Lançar</span> 
   </div>
 </div>
