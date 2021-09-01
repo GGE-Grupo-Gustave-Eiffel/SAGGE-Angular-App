@@ -10,11 +10,14 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { LoadingModule } from '../recursos-visuais/loading/loading.module';
+import { NgxTypeaheadModule } from 'ngx-typeahead';
+import { AlertModule } from '../recursos-visuais/alert/alert.module';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AlertasdinamicosModule } from '../recursos-visuais/alertas-dinamicos/alertasdinamicos.module';
 
 const routes : Routes = [
   {path : '', component : SumarioComponent}
@@ -36,6 +39,9 @@ const routes : Routes = [
     LoadingModule,
     MatInputModule,
     NgbModule,
+    NgxTypeaheadModule,
+    AlertModule,
+    AlertasdinamicosModule,
     RouterModule.forChild(routes)
   ]
 })

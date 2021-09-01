@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { NavbarDirective } from './recursos-visuais/directivos/navbar.directive';
 import { NavbarComponent } from './recursos-visuais/navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TriggerDirective } from './recursos-visuais/directivo-trigger/trigger.directive';
 import { MenuDirective } from './recursos-visuais/directivo-menu/menu.directive';
 import { ConteudoIndisponivelComponent } from './recursos-visuais/conteudo-indisponivel/conteudo-indisponivel.component';
@@ -19,6 +18,7 @@ import { TurmasGuardService } from './pagina-das-escolas/servicos/turmas-guard.s
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterceptorDePedidosService } from './utilitarios/servicos/interceptor-de-pedidos.service';
+import { NgxTypeaheadModule } from 'ngx-typeahead';
 
 
 @NgModule({
@@ -40,7 +40,7 @@ import { InterceptorDePedidosService } from './utilitarios/servicos/interceptor-
     ReactiveFormsModule,
     AppRoutingModule,
     RouterModule,
-    FontAwesomeModule,
+    NgxTypeaheadModule,
     BrowserAnimationsModule
   ],
   providers: [

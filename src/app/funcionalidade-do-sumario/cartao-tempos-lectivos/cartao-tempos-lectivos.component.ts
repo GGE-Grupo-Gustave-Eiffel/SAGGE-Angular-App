@@ -20,7 +20,7 @@ export class CartaoTemposLectivosComponent {
   classe_padrao_dos_cartoes : string = "formbg";
 
   activar_tempo_lectivo() {
-    this.ao_activar_tempo_lectivo.emit({id : this.tempos_de_aula.id, tempos : this.tempos_de_aula.tempos_lectivos});
+    this.ao_activar_tempo_lectivo.emit({id : this.tempos_de_aula.id, tempos : this.tempos_de_aula.tempos_lectivos, turma_id : this.tempos_de_aula.turma_id});
   }
 
   descricao_tempos_lectivos(tempos : number) {

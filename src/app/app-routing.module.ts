@@ -36,6 +36,7 @@ const routes: Routes = [
       title : 'sumário'
     }
   },
+  /*
   {
     path : 'aulas',
     loadChildren : () => import('../app/funcionalidade-das-aulas/funcionalidade-das-aulas.module').then(m => m.FuncionalidadeDasAulasModule)
@@ -64,6 +65,7 @@ const routes: Routes = [
     path : 'autenticacao',
     loadChildren :() => import('./pagina-usuario-nao-autenticado/pagina-usuario-nao-autenticado.module').then(m => m.PaginaUsuarioNaoAutenticadoModule)
   },
+  */
   {
     path : '**',
     pathMatch: 'full', 

@@ -14,14 +14,17 @@ export class TurmaComponentChild implements OnInit {
   turma_title : string = '';
 
   links : Array<links_tipos> = [
+    /*
     {
       nome : 'Minipautas',
       link_caminho : 'minipautas'
     },
+    */
     {
       nome : 'Aulas',
       link_caminho : 'aulas'
-    },
+    }
+    /*
     {
       nome : 'Termos',
       link_caminho : 'termos'
@@ -42,6 +45,7 @@ export class TurmaComponentChild implements OnInit {
       nome : 'Horário',
       link_caminho : 'horarios'
     }
+    */
 
   ];
 

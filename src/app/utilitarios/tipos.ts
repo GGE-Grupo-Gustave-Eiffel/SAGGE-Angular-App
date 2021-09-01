@@ -21,7 +21,8 @@ export interface tempoLectivo {
     id : number,
     disciplina : string,
     tempos_lectivos : number,
-    nome : string
+    nome : string,
+    turma_id : number
 }
 
 export interface sumarios_tipo {

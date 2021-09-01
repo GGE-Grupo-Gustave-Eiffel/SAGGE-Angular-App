@@ -3,7 +3,7 @@
   <div class="col-lg-12">
     <app-loading [mostrar_spinner]="temposDeAula.length == 0" [msg_de_espera]="msg_de_espera"></app-loading>
   </div>
-  
+
 
   <div class="col-lg-3" *ngFor="let aula of temposDeAula">
     <app-cartao-tempos-lectivos [bandeira_aviso]="bandeira_aviso" [tempos_de_aula]="aula"
@@ -25,49 +25,57 @@
             name="email" required />
         </div>
         <div class="field padding-bottom--24">
-        
-            <div class="row">
-              <div class="col-lg-12 col-md-12">
-                <label for="password">Faltas por tempos lectivos</label><br>
-              </div>
-            </div>
 
-            <div class="row">
-              <div class="col-lg-12 col-md-12">
-                <label for="password" style="color: red;">*Azul - Falta por Ausência / vermelha - Falta por Indisciplina / preta - Falta de material</label><br>
-              </div>
+          <div class="row" *ngIf="alunos.length > 0 && !desactivador_dos_campos_do_formulario">
+            <div class="col-lg-12 col-md-12">
+              <label for="password">Faltas por tempos lectivos</label><br>
             </div>
-          
+          </div>
+
+          <div class="row" *ngIf="alunos.length > 0 && !desactivador_dos_campos_do_formulario">
+            <div class="col-lg-12 col-md-12">
+              <app-alert [msg_para_mostrar]="msg_de_info"></app-alert>
+            </div>
+          </div>
+
         </div>
 
         <div class="field padding-bottom--24">
-          
+
           <div class="row">
-            <div class="col-lg-12 col-md-12">
+
+            <div class="col-lg-12 col-md-12" *ngIf="alunos.length > 0 && !desactivador_dos_campos_do_formulario">
 
               <label for="typeahead-basic">Procure por um(a) aluno(a)</label>
-              <input [ngClass]="campo_bloqueado" [disabled]="desactivador_dos_campos_do_formulario" id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" name="pesquisa"/>
-              <br>          
-            </div>
-          </div>
+              <input id="typeahead-basic" name="srchstudent" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" placeholder="Escreva o nome do(a) aluno(a)" />
+              <br>
 
-          <div class="field padding-bottom--24">
-            <input [disabled]="desactivador_dos_campos_do_formulario" name="adicionar_aluno" id="adicionar_aluno"
-             value="Marcar Aluno" (click)="adicionar_aluno()" />
-          </div>
-
-          <div class="row">
-            <div class="col-lg-4 col-md-4" *ngFor="let aluno of alunos_faltosos" style="margin-top:10px">
-              <div>
-                <ngb-toast  header={{extrair_nome(aluno)}} [ngClass]="extrair_classe(aluno)" [autohide]="false" (hidden)="fechar_toast(aluno)" >
-                  <span style="color:#fff">{{extrair_tipo_de_falta(aluno)}}</span>
-                </ngb-toast>
-              </div>
             </div>
-          </div>
+
+            <div class="col-lg-12 col-md-12" *ngIf="alunos.length > 0 && !desactivador_dos_campos_do_formulario">
+              <input name="marcarFalta" value="Marcar Aluno(a)" (click)="marcarFalta()"/>
+            </div>
+
+          </div><br>
+
+          <div class="row" *ngIf="faltas.length > 0">
+
+            <div class="col-lg-12 col-md-12">
+              <!-- ///////////// start /////// -->
+                <app-alert-dinamico *ngFor="let falta of faltas" [(nome_do_esdante)]="falta.nome" [(tipo_de_falta)]="falta.falta" [(id_da_falta)]="falta.id"
+                  (ao_apagar_esta_falta)="apagaEstaFalta($event)"
+                ></app-alert-dinamico>
+              <!-- /////////// end ////////// -->
+            </div>
           
-        </div> <br>
+
+          </div>
+
         
+
+
+        </div>
+
         <a class="arrow-icon" appArrowToggler (click)="mostrar_outro_form()">
           <span class="left-bar"></span>
           <span class="right-bar"></span>
@@ -88,12 +96,12 @@
             <textarea [ngClass]="campo_bloqueado" [disabled]="desactivador_dos_campos_do_formulario" type="textarea"
               name="descricao" rows="6" required></textarea>
           </div>
-      
+
         </div>
 
         <div class="field padding-bottom--24">
-          <input [disabled]="desactivador_dos_campos_do_formulario" type="submit" name="submit"
-            value="Enviar sumário" routerLink="/aulas" />
+          <input [disabled]="desactivador_dos_campos_do_formulario" type="submit" name="submit" value="Enviar sumário"
+            routerLink="/aulas" />
         </div>
       </form>
     </div>

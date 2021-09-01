@@ -241,7 +241,7 @@ input.gn-search:focus {
 }
 
 .gn-icon-download::before {
-		content: "\e007"
+	content: "\e005" 
 }
 
 .gn-icon-photoshop::before {
