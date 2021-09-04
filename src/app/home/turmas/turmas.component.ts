@@ -11,6 +11,7 @@ import { conversor_url } from '../../utilitarios/recursos';
 export class TurmasComponent implements OnInit {
 
   turmas : Array<turma_tipo> = [];
+  msg_de_info = 'Clique para ver aulas';
 
   constructor(private servicos_dados : ServicosDeDadosService) { }
 
@@ -36,7 +37,7 @@ export class TurmasComponent implements OnInit {
         {nome : '11ªC.F.B'},
         {nome : '11ªC.E.J'},
         {nome : '12ªC.F.B'},
-        {nome : '12ªC.E.J'}
+        {nome : '13ªCG'}
       ];
   }
 

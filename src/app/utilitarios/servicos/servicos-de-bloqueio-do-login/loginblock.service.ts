@@ -6,7 +6,7 @@ import { EstadoDeAutenticacaoService } from '../estado-de-autenticacao.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
+export class LoginblockService implements CanActivate {
 
   public estado_de_autenticacao : boolean = false;
 
@@ -22,17 +22,11 @@ export class AuthGuardService implements CanActivate {
     });
 
     if (this.estado_de_autenticacao) {
-      return true;
-    } else {
-      
-      this.router.navigate(['/'], {
-        queryParams : {
-          return : state.url
-        }
-      });
-    
+      this.router.navigateByUrl('/turmas');
       return false;
+    } else {
+      return true;
     }
   }
+ 
 }
-

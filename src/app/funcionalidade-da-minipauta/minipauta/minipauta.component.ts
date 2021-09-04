@@ -9,7 +9,7 @@ import { sumarios_tipo } from '../../utilitarios/tipos';
 })
 export class MinipautaComponent implements OnInit {
 
-  alunos : Array<sumarios_tipo> = sumarios_dados;
+  //alunos : Array<sumarios_tipo> = sumarios_dados;
   tool_tip  : string = 'Trimestre ';
   
 

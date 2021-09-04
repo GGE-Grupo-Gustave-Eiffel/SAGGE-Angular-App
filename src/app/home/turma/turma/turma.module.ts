@@ -14,8 +14,14 @@ const routes : Routes = [
   },
   {
     path : 'aulas',
+    loadChildren: () => import('../../../disciplinas-por-turmas/disciplinas.module').then(m => m.DisciplinasModule)
+  },
+  /*
+  {
+    path : 'aulas',
     loadChildren: () => import('../../../funcionalidade-das-aulas/funcionalidade-das-aulas.module').then(m => m.FuncionalidadeDasAulasModule)
   },
+  */
   {
     path : 'termos',
     loadChildren: () => import('../../../funcionalidade-dos-termos/funcionalidade-dos-termos.module').then(m => m.FuncionalidadeDosTermosModule)

@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit  {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.return = params['return'] || '/'
+      this.return = params['return'] || 'turmas'
     });
 
     this.loginForm = this.formBuilder.group({
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit  {
       },
       error => {
         console.log(error.error);
-        this.errors = error.error;
+        this.errors = error.error.error;
       }, () => {
         this.estadoAuth.setAuthState(true);
         this.loginForm.reset();

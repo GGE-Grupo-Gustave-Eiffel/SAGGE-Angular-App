@@ -1,20 +1,7 @@
 <div class="formbg">
   <div class="formbg-inner padding-horizontal--48">
     <span class="padding-bottom--15">Iniciar sessão</span>
-
-    <!-- Mensagens de erro no login 
-    <div *ngIf="errors?.email" class="alert alert-danger mt-3">
-      {{ errors?.email }}
-    </div>
-
-    <div *ngIf="errors?.password" class="alert alert-danger mt-3">
-      {{ errors?.password }}
-    </div>
-  
-    <div *ngIf="errors?.error || true" class="alert alert-danger mt-3">
-      {{ errors?.error || '' }}
-    </div>
-  -->
+    <label class="error-msg">*{{this.errors}}</label>
 
     <form id="stripe-login" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
       <div class="field padding-bottom--24">

@@ -16,9 +16,11 @@ export interface User {}
 })
 export class PerfilComponent implements OnInit {
 
-  msg_info : string = 'Digite na caixa de texto abaixo a sua nova senha';
+  public msg_info : string = 'Digite na caixa de texto abaixo a sua nova senha';
   public errors = null;
   public form! : FormGroup;
+  public user_id! : number;
+
 
   constructor(
       public loginService : LoginServicosService,
@@ -32,23 +34,22 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let user_id! : number;
-
-    this.loginService.profileUser().subscribe((data : any) => {
-      user_id = data.id;
-    });
-
     this.form = this.formBuilder.group({
       password : ['', [Validators.required , Validators.minLength(8)]],
-      id : 1
+      id : ['', [Validators.required]]
     }); 
+
+    this.loginService.profileUser().subscribe((data : any) => {
+      // actualize o valor do id do utilizador:
+      this.form.controls['id'].setValue(data.id);
+    });  
   }
 
   onSubmit() {
-    console.log(this.form.value);
+  
     this.servicoDeMudancaDeSenha.mudarSenha(this.form.value).subscribe(
       result => {
-        this.responseHandler(result);
+        console.log(result);
       },
       error => {
         console.log(error.error);
@@ -59,15 +60,21 @@ export class PerfilComponent implements OnInit {
     );
   }
 
-  responseHandler(data : any) {
-    this.token.handleData(data.access_token);
-  }
-
   // saír da conta
   sair_da_conta() {
-    this.estadoAuth.setAuthState(false);
-    this.token.removeToken();
-    this.router.navigate(['login']);
+    this.loginService.logout().subscribe(
+      result => {
+        console.log(result);
+      },
+      error => {
+        console.log(error.error);
+      }, () => {
+        this.estadoAuth.setAuthState(false);
+        this.token.removeToken();
+        this.router.navigate(['login']);
+      }
+    );   
+  
   }
 
 }

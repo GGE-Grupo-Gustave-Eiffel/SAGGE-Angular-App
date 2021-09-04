@@ -2,3 +2,7 @@ input:disabled,
 input[disabled]{
     cursor: not-allowed;
 }
+
+.error-msg {
+    color : red;
+}

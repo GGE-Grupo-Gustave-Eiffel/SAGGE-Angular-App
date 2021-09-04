@@ -1,24 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 import { PaginaDasEscolasComponent } from './pagina-das-escolas/pagina-das-escolas.component';
 import { TurmasGuardService } from './pagina-das-escolas/servicos/turmas-guard.service';
+import { LoginblockService } from './utilitarios/servicos/servicos-de-bloqueio-do-login/loginblock.service';
 import { AuthGuardService } from './utilitarios/servicos/servicos-de-guarda-de-rota/auth-guard.service';
 
 const routes: Routes = [
+  /*
   {
     path : '',
     component : PaginaDasEscolasComponent
   },
+  */
   {
-    path: 'turmas',
-    loadChildren: () => import('../app/home/home.module').then(m => m.HomeModule)
+    path : '',
+    component : LoginComponent,
+    canActivate : [LoginblockService]
   },
   {
-    path : 'login',
-    loadChildren: () => import('../app/login/login.module').then(m => m.LoginModule),
-    data : {
-      title : 'Iniciar sessão'
-    }
+    path: 'turmas',
+    loadChildren: () => import('../app/home/home.module').then(m => m.HomeModule),
+    canActivate : [AuthGuardService]
   },
   {
     path : 'perfil',
@@ -31,10 +34,7 @@ const routes: Routes = [
   {
     path: 'sumario',
     loadChildren: () => import('../app/funcionalidade-do-sumario/sumarios.module').then(m => m.SumariosModule),
-    canActivate : [AuthGuardService],
-    data : {
-      title : 'sumário'
-    }
+    canActivate : [AuthGuardService]
   },
   /*
   {

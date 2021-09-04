@@ -7,16 +7,16 @@ import { CartaoInfoModule } from '../recursos-visuais/cartao-info/cartao-info.mo
 import { AulaComponent } from './aula/aula.component';
 import { EditarAulaComponent } from './editar-aula/editar-aula.component';
 import { AulasComponentDefault } from './aulas/aulas.component';
-import { ArrowTogglerDirective } from '../funcionalidade-do-sumario/sumario__/arrow-toggler.directive';
+import { LoadingModule } from '../recursos-visuais/loading/loading.module';
 
 const routes : Routes = [
   {
-    path : '', component : AulasComponent,
+    path : '', 
+    component : AulasComponent,
     children : [
-     { path : '', component : AulasComponentDefault },
-     { path : 'aula', component : AulaComponent },
-     { path : 'editar', component : EditarAulaComponent}
-    ]
+      { path : '', component : AulasComponentDefault },
+      { path : ':iddaaula', component : AulaComponent },
+    ] 
   }
 ]
 
@@ -31,6 +31,7 @@ const routes : Routes = [
     CommonModule,
     CartaoInfoModule,
     PaginacaoModule,
+    LoadingModule,
     RouterModule.forChild(routes)
   ]
 })

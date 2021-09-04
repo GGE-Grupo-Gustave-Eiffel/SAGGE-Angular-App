@@ -21,9 +21,13 @@ export class LoginServicosService {
   signin(user : any) : Observable<any> {
     return this.http.post<any>('http://127.0.0.1:8000/api/auth/login', user);
   }
+
+  logout() : Observable<any> {
+    return this.http.post<any>('http://127.0.0.1:8000/api/auth/logout', {});
+  }
   
   profileUser() : Observable<any> {
-    return this.http.get<any>('http://127.0.0.1:8000/api/auth/user-profile');
+    return this.http.get<any>('http://127.0.0.1:8000/api/auth/userprofile');
   }
 
 }

@@ -11,15 +11,6 @@
 
 /*quando os campos do formulário estiverem bloquados, aplique esta formatação*/
 
-.input-blocked {
-    background: url("https://assets.digitalocean.com/labs/icons/lock.svg") no-repeat 95% 50%;
-    background-size: 25px;
-}
-
-input:disabled,
-input[disabled]{
-  cursor: not-allowed;
-}
 
 
 /*arrow to show more fields*/
@@ -98,37 +89,23 @@ textarea {
    width : 100%
 }
 
-
-
 #adicionar_aluno {
+  font-size: 16px;
+    line-height: 28px;
+    padding: 8px 16px;
+    width: 100%;
+    min-height: 44px;
+    border: unset;
+    border-radius: 4px;
     text-align: center;
     background-color: rgb(125, 191, 230);
     box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(84 105 212) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px;
     color: #fff;
     font-weight: 600;
-    border : none;
     cursor: pointer;
 }
 
-/*cores das faltas*/
-.Azul {
-  background-color: blue;
-}
-
-.Vermelha {
-  background-color: red;
-}
-
-.Preta {
-  background-color: black;
-}
-
-.ta-results  {
-  width : 70%;
-}
-
-
-/**/
-.hide {
-  display: none;
+input:disabled,
+input[disabled]{
+  cursor: not-allowed;
 }

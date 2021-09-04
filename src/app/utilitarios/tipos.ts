@@ -22,12 +22,14 @@ export interface tempoLectivo {
     disciplina : string,
     tempos_lectivos : number,
     nome : string,
-    turma_id : number
+    turma : number
 }
 
 export interface sumarios_tipo {
+    id : number,
     sumario : string,
-    detalhes_aula : detalhes_aula
+    data : string,
+    tempos : number
 }
 
 export interface detalhes_aula {

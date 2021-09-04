@@ -1,12 +1,66 @@
-<div style="margin-top: 7px;">
+<div style="margin-top: 7px;" (click)="aula_clicada()">
 	<details>
 		<summary>
-			{{info_da_aula.sumario}} / {{info_da_aula.detalhes_aula.licao}} / semana - {{info_da_aula.detalhes_aula.semana}}
+			{{info_da_aula.sumario}}
 		</summary>
 		<div>
-			{{info_da_aula.detalhes_aula.resumo}}
-			<br><br><br>
-			<app-breadcrumb *ngIf="links.length > 0" [links]="links"></app-breadcrumb>
+			     
+			<h6 class="d-flex align-items-center mb-3"><i
+					class="material-icons text-info mr-2">Informações adicionais</i></h6>
+			<small>Total de tempos : <b>{{info_da_aula.tempos}}</b></small>
+			
+			<h6 class="d-flex align-items-center mb-3">
+				<small>Data : <b>{{info_da_aula.data}}</b></small>
+			</h6>
+
+			<h6 class="d-flex align-items-center mb-3">
+				<div style="border: none; padding: 0px;margin:0px">
+					<small>Sumário(s) da aula:</small><br><br>
+					<small *ngFor="let i of [1,2,3]">-> <b>Introdução as plantas</b><br></small>
+				</div>
+				
+			</h6>
+
+			<hr>
+			<div class="row" style="border: none; padding: 0px;margin:0px">
+				<div class="col-lg-12 col-md-12 col-sm-12" style="border : none;padding:0px;margin:0px">
+					<app-alert [msg_para_mostrar]="sem_faltas_msg" ></app-alert>
+				</div>
+			</div>
+
+			<!-- mostre as informações das faltas -->
+			<div class="row" style="border: none; padding: 0px;margin:0px" *ngIf="descricao_das_faltas().length > 0">
+				<div class="col-lg-12 col-md-12 col-sm-12" style="border : none;padding:0px;margin:0px">
+					<small><b>Faltas Registadas</b></small><br>
+					<div *ngFor="let falta of descricao_das_faltas()" style="border : none;padding:0px;margin:0px">
+						<small>{{falta}}</small><br>
+					</div>
+				</div>
+				<hr>
+			</div>
+
+			<!-- mostre as informações das ocorrências -->
+			<div class="row" style="border: none; padding: 0px;margin:0px" *ngIf="descricao_da_ocorrencia()">
+				<div class="col-lg-12 col-md-12 col-sm-12" style="border : none;padding:0px;margin:0px">
+					<small><b>Título da ocorrência: </b>{{detalhes.ocorrencia[0].titulo}}</small><br><br>
+					<small><b>Descrição:</b></small>
+					<small>
+						{{detalhes.ocorrencia[0].descricao}}
+					</small>
+					<hr>	
+				</div>
+			</div>
+
+
+			<!--
+				<div class="wrapper" style="border: none; padding: 0px;margin:0px">
+				<ul class="breadcrumbs">
+					<li><a routerLink={{info_da_aula.id}}>Ver mais detalhes</a></li>
+				</ul>
+			</div>
+
+			-->
+                
 		</div>
 	</details>
 </div>

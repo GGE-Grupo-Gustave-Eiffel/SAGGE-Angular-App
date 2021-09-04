@@ -1,15 +1,25 @@
 <!-- content goes here  -->
 <div class="">
-    <div class="row">
-      <div class="col-lg-12">
+  <div class="row">
 
-        <div *ngFor="let sumario of sumarios">
-            <app-cartao-info [info_da_aula]="sumario" [links]="links"></app-cartao-info>
-        </div>
-        
+    <div class="col-lg-12" style="text-align: center;" *ngIf="vector_de_aulas_vazio">
+      <span>Sem aulas nesta turma</span>
+    </div>
+
+    <div class="col-lg-12">
+      <app-loading [mostrar_spinner]="aulas.length == 0" [msg_de_espera]="msg_de_espera"></app-loading>
+    </div>
+    
+    <div class="col-lg-12" *ngIf="aulas.length > 0">
+
+      <div *ngFor="let aula of aulas">
+          <app-cartao-info [info_da_aula]="aula" [detalhes]="detalhesDestaAula(aula.id)" (ao_clicar_em_aula)="getDetalhesDaAula($event)"></app-cartao-info>
       </div>
+      
     </div>
   </div>
+</div>
   
-
-<app-paginacao [paginas]="semanas.length" (emitir_mudar_semana)="alteracao_semana($event)" [tool_tip]="tool_tip"></app-paginacao>
+<!--
+  <app-paginacao *ngIf="aulas.length > 0" [paginas]="semanas.length" (emitir_mudar_semana)="alteracao_semana($event)" [tool_tip]="tool_tip"></app-paginacao>
+-->

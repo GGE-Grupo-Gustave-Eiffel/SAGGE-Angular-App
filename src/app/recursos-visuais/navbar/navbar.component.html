@@ -14,7 +14,7 @@
               <a class="gn-icon gn-icon-illustrator">Relatórios</a>
             </li>
             <li>
-              <a routerLink="/sumario" class="gn-icon gn-icon-photoshop">Sumários</a>
+              <a *ngIf="estado_de_sessao" routerLink="/sumario" class="gn-icon gn-icon-photoshop">Sumários</a>
             </li>
             <li>
               <a class="gn-icon gn-icon-cog">Encarregados</a>
@@ -32,10 +32,10 @@
       </nav>
 
     </li>
-    <li><a href="#">SAGGE</a></li>
+    <li><a routerLink="/">SAGGE</a></li>
    
     <li class="upper-li">
-      <a *ngIf="!estado_de_sessao" class="codrops-icon codrops-icon-drop" (click)="sair_da_conta()"  routerLink="/login"><span class="link-menu">Iniciar Sessão</span></a>
+    <!-- <a *ngIf="!estado_de_sessao" class="codrops-icon codrops-icon-drop" (click)="sair_da_conta()"  routerLink="/login"><span class="link-menu">Iniciar Sessão</span></a> -->  
       <a *ngIf="estado_de_sessao" class="codrops-icon codrops-icon-drop" (click)="sair_da_conta()"><span class="link-menu">Encerrar</span></a>  
     </li>
   </ul>

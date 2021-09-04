@@ -9,23 +9,25 @@ export class UtilService {
 
   marcar_falta(listaDeFaltas : Array<any>, falta : any, falta_id : number, tempos : number) {
 
-    if (listaDeFaltas.filter(faltaMarcada => faltaMarcada.nome == falta.split('-')[0]).length < tempos) {
-      let nome_do_aluno = falta.split('-')[0];
-      let tipo_de_falta = falta.split('-')[1];
-      let objecto_da_falta = {nome : nome_do_aluno, falta : tipo_de_falta, id : falta_id}
+    let nome_do_aluno = falta.split('-')[0];
+    let tipo_de_falta = falta.split('-')[1];
+    let objecto_da_falta = {nome : nome_do_aluno, falta : tipo_de_falta, id : falta_id}
 
-      switch(tipo_de_falta) {
-        case 'Ausência':
+    switch(tipo_de_falta) {
+      case 'Material':
+        if (listaDeFaltas.filter(faltaMarcada => faltaMarcada.falta == 'Ausência' && faltaMarcada.nome == nome_do_aluno).length < tempos)
+          this.marcar_material(objecto_da_falta, listaDeFaltas);
+        break;
+      case 'Indisciplina' :
+        if (listaDeFaltas.filter(faltaMarcada => faltaMarcada.falta == 'Ausência' && faltaMarcada.nome == nome_do_aluno).length < tempos)
+          this.marcar_disciplinar(objecto_da_falta, listaDeFaltas);
+        break;
+      default :
+        if (listaDeFaltas.filter(faltaMarcada => faltaMarcada.falta == 'Ausência' && faltaMarcada.nome == nome_do_aluno).length < tempos
+           && listaDeFaltas.filter(faltaMarcada => faltaMarcada.nome == nome_do_aluno).length < tempos)   
           this.marcar_ausencia(objecto_da_falta, listaDeFaltas);
-          break;
-        case 'Indisciplina':
-          this.marcar_disciplinar(objecto_da_falta, listaDeFaltas)
-          break;
-        default :
-          this.marcar_material(objecto_da_falta, listaDeFaltas)
+        break;
       }
-    }
-
   }
 
   marcar_ausencia(obj_da_falta : any, listaDeFaltas : Array<any>) {

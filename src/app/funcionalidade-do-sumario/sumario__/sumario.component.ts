@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { identificador, tempoLectivo } from '../../utilitarios/tipos';
 import { tempos_lectivos } from '../../utilitarios/dados_falso';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { HorariosService } from '../serivcos-de-dados/horarios.service';
 import { LoginServicosService } from 'src/app/utilitarios/servicos/login-servicos.service';
 import { AlunosService } from '../serivcos-de-dados/alunos.service';
-import {NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
 import { UtilService } from './servicos_de_utilidades/util.service';
-
+import { GravadorDeAulasService } from '../serivcos-de-dados/gravador-de-aulas.service';
+import { TokenService } from 'src/app/utilitarios/servicos/token.service';
+import { switchMap } from 'rxjs/operators';
 
 /**
  * @title Display value autocomplete
@@ -31,12 +34,17 @@ export class SumarioComponent implements OnInit {
 
   msg_de_espera: string = 'a carregar Informações...';
   msg_de_info : string = 'Escreva o nome do aluno abaixo e marque a falta';
+
+  public aulaForm! : FormGroup;
   
   constructor(
     private horarios: HorariosService,
     private loginService: LoginServicosService,
     private alunosService: AlunosService,
     private gestorDeFaltas : UtilService,
+    private gravadorDeAulas : GravadorDeAulasService,
+    private formBuilder : FormBuilder, 
+    private token : TokenService,
     config: NgbTypeaheadConfig
   ) {
     config.showHint = true;
@@ -44,9 +52,7 @@ export class SumarioComponent implements OnInit {
 
 
   /*--------- Funcionalidade do typeahead ----------*/
-  faltas : Array<any> = [
-    
-  ]
+  faltas : Array<any> = []
 
   alunos : Array<any> = [];
   search = (text$: Observable<string>) =>
@@ -57,24 +63,32 @@ export class SumarioComponent implements OnInit {
         : this.alunos.filter(v => v.toLowerCase().startsWith(term.toLocaleLowerCase())).splice(0, 10))
     )
 
-
-  dismissPopup() {
-    return true;
-  }  
   /*---------- Funcionalidade do typeahead ---------*/
 
 
   ngOnInit() {
-    this.loginService.profileUser().subscribe((professor: any) => {
-      this.horarios
+
+    this.loginService.profileUser().pipe(
+      switchMap(professor => {
+        return this.horarios
         .get_horarios_do_professor(professor.id)
-        .subscribe((data: any) => {
-          this.temposDeAula = data.horarios;
-        });
+      })
+    ).subscribe(data => {
+      this.temposDeAula = data.horarios;
     });
+
+    this.aulaForm = this.formBuilder.group({
+      sumario : ['', [Validators.required]],
+      turma_nome : ['', [Validators.required]],
+      disciplina : ['', [Validators.required]],
+      tempos : ['', [Validators.required]],
+      faltas : [[]],
+      ocorrencia_titulo : [''],
+      occorencia_descricao : [''],
+    }); 
   }
 
-  selectionar_tempo_lectivo(tempoId: any) {
+  public selectionar_tempo_lectivo(tempoId: any) {
 
     // limpa campos
     this.model = '';
@@ -86,13 +100,18 @@ export class SumarioComponent implements OnInit {
       this.desactivador_dos_campos_do_formulario = false;
       this.campo_bloqueado = '';
 
+      this.aulaForm.controls['turma_nome'].setValue(tempoId.nome_turma);
+      this.aulaForm.controls['disciplina'].setValue(tempoId.disciplina);
+      this.aulaForm.controls['tempos'].setValue(tempoId.tempos);
+
       // carrega a lista dos alunos desta turma no backend
-      if (this.id_da_turma_anterior != tempoId.turma_id) {
-        this.alunosService.get_alunos(tempoId.turma_id).subscribe((turma: any) => {
+      if (this.id_da_turma_anterior != tempoId.turma) {
+        this.alunosService.get_alunos(tempoId.turma).subscribe((turma: any) => {
           
           // I might refactor this code for perfomance reasons
           let faltas_tipos = 0;
-          let tipos_de_falta = ['Ausência', 'Indisciplina', 'Material']
+          let tipos_de_falta = ['Ausência', 'Indisciplina', 'Material'];
+
           turma.alunos.forEach((aluno : any) => {
             while (faltas_tipos < 3) {
               this.alunos.push(aluno + '-' + `${tipos_de_falta[faltas_tipos]}`);
@@ -101,7 +120,7 @@ export class SumarioComponent implements OnInit {
           faltas_tipos = 0;
           });
 
-          this.id_da_turma_anterior = tempoId.turma_id;
+          this.id_da_turma_anterior = tempoId.turma;
         });
 
       }
@@ -113,18 +132,19 @@ export class SumarioComponent implements OnInit {
     }
   }
 
-  mostrar_outro_form() {
+  public mostrar_outro_form() {
     this.mostrar_form_adicional === true
       ? (this.mostrar_form_adicional = false)
       : (this.mostrar_form_adicional = true);
   }
 
-  apagaEstaFalta (falta : any) {
+  public apagaEstaFalta (falta : any) {
     let index = falta.id;
     this.faltas = this.faltas.filter(falta => falta.id != index);
+    this.aulaForm.controls['faltas'].setValue(this.faltas);
   }
 
-  marcarFalta() {
+  public marcarFalta() {
 
     if (this.alunos.filter(aluno => aluno == this.model).length > 0 ) {
       let falta_indx = this.faltas.length;
@@ -138,7 +158,23 @@ export class SumarioComponent implements OnInit {
      // limpe alguns campos:
      this.model = '';
 
+     // actualize o campo das faltas no formulário
+     this.aulaForm.controls['faltas'].setValue(this.faltas);
   }
 
 
+  onSubmit() {
+    this.gravadorDeAulas.gravar_aula(this.aulaForm.value).subscribe(
+      result => {
+        console.log(result);
+      },
+      error => {
+        console.log(error.error);
+      }, () => {
+        this.aulaForm.reset();
+        this.faltas = [];
+        this.bandeira_aviso = { id: 0, tempos: 0 }; 
+      }
+    );
+  }
 }

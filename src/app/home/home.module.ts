@@ -3,10 +3,8 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./home__/home.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TurmasComponent } from './turmas/turmas.component';
 import { BarraDePesquisaModule } from "../recursos-visuais/barra-de-pesquisa/barra-de-pesquisa.module";
-
 
 const routes : Routes = [
     {
@@ -17,7 +15,7 @@ const routes : Routes = [
                 component : TurmasComponent
             },
             {
-                path : ':codigo_da_turma',
+                path : ':nome_da_turma',
                 loadChildren: () => import('./turma/turma.module').then(m => m.TurmaModule)
             }
         ]
@@ -33,8 +31,7 @@ const routes : Routes = [
         CommonModule,
         RouterModule.forChild(routes),
         NgbModule,
-        BarraDePesquisaModule,
-        FontAwesomeModule
+        BarraDePesquisaModule
     ]
 })
 export class HomeModule {}
