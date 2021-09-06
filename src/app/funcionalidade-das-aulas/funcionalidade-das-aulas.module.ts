@@ -14,8 +14,7 @@ const routes : Routes = [
     path : '', 
     component : AulasComponent,
     children : [
-      { path : '', component : AulasComponentDefault },
-      { path : ':iddaaula', component : AulaComponent },
+      { path : '', component : AulasComponentDefault }
     ] 
   }
 ]

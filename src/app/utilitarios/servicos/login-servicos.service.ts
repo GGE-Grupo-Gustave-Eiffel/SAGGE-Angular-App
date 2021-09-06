@@ -15,19 +15,19 @@ export class LoginServicosService {
   constructor(private http : HttpClient) {}
 
   register(user : any) : Observable<any> {
-    return this.http.post('http://127.0.0.1:8000/api/auth/register', user);
+    return this.http.post('https://cepph.com/api/auth/register', user);
   }
  
   signin(user : any) : Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/auth/login', user);
+    return this.http.post<any>('https://cepph.com/api/auth/login', user);
   }
 
   logout() : Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/auth/logout', {});
+    return this.http.post<any>('https://cepph.com/api/auth/logout', {});
   }
   
   profileUser() : Observable<any> {
-    return this.http.get<any>('http://127.0.0.1:8000/api/auth/userprofile');
+    return this.http.get<any>('https://cepph.com/api/auth/userprofile');
   }
 
 }

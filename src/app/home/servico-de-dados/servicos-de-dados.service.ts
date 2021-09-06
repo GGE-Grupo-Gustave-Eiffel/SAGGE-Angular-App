@@ -12,7 +12,7 @@ export class ServicosDeDadosService {
   constructor(private http : HttpClient) { }
   
   get_turmas(professorid : number) : Observable<any> {
-    return this.http.get<turma_tipo>(`http://127.0.0.1:8000/api/auth/turmas/${professorid}`).pipe(
+    return this.http.get<turma_tipo>(`https://cepph.com/api/auth/turmas/${professorid}`).pipe(
       catchError(this.handleError)
     )
   }

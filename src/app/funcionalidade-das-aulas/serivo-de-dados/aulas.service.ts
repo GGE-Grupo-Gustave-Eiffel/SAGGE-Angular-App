@@ -10,10 +10,10 @@ export class AulasService {
   constructor(private http : HttpClient) { }
 
   getAulas(dados : any) : Observable<any> {
-    return this.http.get<any>(`http://127.0.0.1:8000/api/auth/aulas/${dados}`);
+    return this.http.get<any>(`https://cepph.com/api/auth/aulas/${dados}`);
   }
 
   getMaisDadosDaAula(idDaAula : number) : Observable<any> {
-    return this.http.get<any>(`http://127.0.0.1:8000/api/auth/aula/${idDaAula}`);
+    return this.http.get<any>(`https://cepph.com/api/auth//aula/${idDaAula}`);
   }
 }
