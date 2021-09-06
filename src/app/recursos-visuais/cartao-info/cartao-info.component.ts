@@ -32,7 +32,7 @@ export class CartaoInfoComponent {
   }
 
   // mensagens de informação:
-  sem_faltas_msg : string = 'Não foram registadas faltas nesta aula';
+  sem_faltas_msg : string = 'Não é possível mostrar as faltas agora.';
   sem_ocorr_msg : string = 'aulas sem ocorrências!'
   sem_faltas_ou_ocorr_msg : string = 'Sem faltas ou ocorrências registadas';
 

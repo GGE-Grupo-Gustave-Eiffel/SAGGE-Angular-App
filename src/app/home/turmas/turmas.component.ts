@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { turma_tipo } from '../../utilitarios/tipos'
 import { ServicosDeDadosService } from '../servico-de-dados/servicos-de-dados.service';
 import { conversor_url } from '../../utilitarios/recursos';
+import { LoginServicosService } from 'src/app/utilitarios/servicos/login-servicos.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-turmas',
@@ -13,32 +15,26 @@ export class TurmasComponent implements OnInit {
   turmas : Array<turma_tipo> = [];
   msg_de_info = 'Clique para ver aulas';
 
-  constructor(private servicos_dados : ServicosDeDadosService) { }
+  constructor(
+    private servicos_dados : ServicosDeDadosService,
+    private loginService : LoginServicosService
+  
+  ) { }
 
   ngOnInit() {
-    this.get_turmas();
+
+    this.loginService.profileUser().pipe(
+      switchMap(professor => {
+        return  this.servicos_dados.get_turmas(professor.id)
+      })
+    ).subscribe(data => {
+      this.turmas = data.turmas;
+    });
+    
   }
 
   converte_para_url(texto : string) : string {
     return conversor_url(texto);
-  }
-
-  get_turmas() {
-   
-      this.turmas = [
-        {nome : '7ªclasseA'},
-        {nome : '7ªclasseB'},
-        {nome : '8ªclasseA'},
-        {nome : '8ªclasseB'},
-        {nome : '9ªclasseA'},
-        {nome : '9ªclasseB'},
-        {nome : '10ªC.F.B'},
-        {nome : '10ªC.E.J'},
-        {nome : '11ªC.F.B'},
-        {nome : '11ªC.E.J'},
-        {nome : '12ªC.F.B'},
-        {nome : '13ªCG'}
-      ];
   }
 
 }

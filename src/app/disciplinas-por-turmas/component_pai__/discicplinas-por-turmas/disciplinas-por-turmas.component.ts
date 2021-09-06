@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { GetdisciplinasService } from '../../servicos-de-dados/getdisciplinas.service';
 
 @Component({
   selector: 'app-disciplinas-por-turmas',
@@ -7,21 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisciplinasPorTurmasComponent implements OnInit {
 
-  disciplinas : Array<any> = [
-    {nome : 'Língua Portuguesa'},
-    {nome : 'Biologia'},
-    {nome : 'Matemática'},
-    {nome : 'Física'},
-    {nome : 'Geografia'},
-    {nome : 'Educação Física'},
-    {nome : 'Informática'}
+  disciplinas : Array<any> = [];
 
-  ]
-
-
-  constructor() { }
+  constructor(
+    private info_da_rota : ActivatedRoute,
+    private servicosDeDados : GetdisciplinasService  
+  ) { }
 
   ngOnInit(): void {
+
+    this.info_da_rota.params.pipe(
+      switchMap((params : Params) => {
+        return this.servicosDeDados.get_disciplinas(params['nome_da_turma'])
+      })
+    ).subscribe(data => {
+      this.disciplinas = data.disciplinas;
+    });
   }
 
 }

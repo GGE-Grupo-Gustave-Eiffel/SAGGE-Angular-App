@@ -49,12 +49,14 @@ export class TurmaComponentChild implements OnInit {
 
   ];
 
-  constructor(private route : ActivatedRoute) { }
+  constructor(/*private route : ActivatedRoute*/) { }
 
   ngOnInit() {
+    /*
     this.route.params.subscribe((params : Params) => {
       this.turma_title = url_para_nome(params['codigo_da_turma']);
     });
+    */
   }
 
 }

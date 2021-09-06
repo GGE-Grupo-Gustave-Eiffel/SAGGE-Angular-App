@@ -9,8 +9,8 @@ export class AulasService {
 
   constructor(private http : HttpClient) { }
 
-  getAulas(nomeDaTurma : any) : Observable<any> {
-    return this.http.get<any>(`http://127.0.0.1:8000/api/auth/aulas/${nomeDaTurma}`);
+  getAulas(dados : any) : Observable<any> {
+    return this.http.get<any>(`http://127.0.0.1:8000/api/auth/aulas/${dados}`);
   }
 
   getMaisDadosDaAula(idDaAula : number) : Observable<any> {

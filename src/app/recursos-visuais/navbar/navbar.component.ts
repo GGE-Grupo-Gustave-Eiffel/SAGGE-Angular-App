@@ -29,21 +29,10 @@ export class NavbarComponent implements OnInit {
   }
 
   // saír da conta
-  sair_da_conta() {
-
-    this.authService.logout().subscribe(
-      result => {
-        console.log(result);
-      },
-      error => {
-        console.log(error.error);
-      }, () => {
-        this.autent.setAuthState(false);
-        this.token.removeToken();
-        this.router.navigate(['/']);
-      }
-    );
-    
+  sair_da_conta() { 
+    this.autent.setAuthState(false);
+    this.token.removeToken();
+    this.router.navigate(['/']);
   }
 
 }

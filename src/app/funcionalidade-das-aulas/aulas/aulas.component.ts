@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { links_tipos, sumarios_tipo } from 'src/app/utilitarios/tipos';
 import { AulasService } from '../serivo-de-dados/aulas.service';
 import { de_url_para_turma } from '../../utilitarios/recursos';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-aulas',
@@ -24,13 +25,26 @@ export class AulasComponentDefault implements OnInit {
   ) { }
  
   ngOnInit() {
+
+    this.route.params.pipe(
+      switchMap((params : Params) => {
+        return this.servicoDeAulas.getAulas(`${params['nome_da_turma']}-${params['disciplina_nome']}`)
+      })
+    ).subscribe(data => {
+      this.aulas = data.aulas;
+    });
+
+    /*
     this.route.params.subscribe((params : Params) => {
+      console.log(params);
       this.servicoDeAulas.getAulas(de_url_para_turma(params['nome_da_turma'])).subscribe(data => {
+        
         this.aulas = data.aulas;
         console.log(data.aulas);
         this.vector_de_aulas_vazio = data.aulas.length == 0 ? true : false;
       });
     });
+    */
   }
 
   getDetalhesDaAula(dados_aula : any) {

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
-import { environment } from '../../../environments/environment';
 import { turma_tipo } from '../../utilitarios/tipos'
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -12,8 +11,8 @@ import { catchError } from 'rxjs/operators';
 export class ServicosDeDadosService {
   constructor(private http : HttpClient) { }
   
-  get_turmas() : Observable<any> {
-    return this.http.get<turma_tipo>(`${environment.baseUrl}api/turmas`).pipe(
+  get_turmas(professorid : number) : Observable<any> {
+    return this.http.get<turma_tipo>(`http://127.0.0.1:8000/api/auth/turmas/${professorid}`).pipe(
       catchError(this.handleError)
     )
   }

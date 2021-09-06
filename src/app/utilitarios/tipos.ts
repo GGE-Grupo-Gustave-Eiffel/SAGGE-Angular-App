@@ -9,7 +9,8 @@ export interface links_tipos {
 }
 
 export interface turma_tipo {
-    nome : string
+    nome : string,
+    id : number
 }
 
 export interface minipauta_tipo {

@@ -16,7 +16,7 @@
 			<h6 class="d-flex align-items-center mb-3">
 				<div style="border: none; padding: 0px;margin:0px">
 					<small>Sumário(s) da aula:</small><br><br>
-					<small *ngFor="let i of [1,2,3]">-> <b>Introdução as plantas</b><br></small>
+					<small>-> <b>{{info_da_aula.sumario}}</b><br></small>
 				</div>
 				
 			</h6>
@@ -28,7 +28,7 @@
 				</div>
 			</div>
 
-			<!-- mostre as informações das faltas -->
+			<!-- mostre as informações das faltas -
 			<div class="row" style="border: none; padding: 0px;margin:0px" *ngIf="descricao_das_faltas().length > 0">
 				<div class="col-lg-12 col-md-12 col-sm-12" style="border : none;padding:0px;margin:0px">
 					<small><b>Faltas Registadas</b></small><br>
@@ -39,7 +39,7 @@
 				<hr>
 			</div>
 
-			<!-- mostre as informações das ocorrências -->
+			<!- mostre as informações das ocorrências -
 			<div class="row" style="border: none; padding: 0px;margin:0px" *ngIf="descricao_da_ocorrencia()">
 				<div class="col-lg-12 col-md-12 col-sm-12" style="border : none;padding:0px;margin:0px">
 					<small><b>Título da ocorrência: </b>{{detalhes.ocorrencia[0].titulo}}</small><br><br>
@@ -52,7 +52,7 @@
 			</div>
 
 
-			<!--
+			<!-
 				<div class="wrapper" style="border: none; padding: 0px;margin:0px">
 				<ul class="breadcrumbs">
 					<li><a routerLink={{info_da_aula.id}}>Ver mais detalhes</a></li>
